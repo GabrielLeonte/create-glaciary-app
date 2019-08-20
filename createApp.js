@@ -1,22 +1,30 @@
 const fs = require('fs-extra');
 const chalk = require('chalk');
+const validate = require('validate-npm-package-name');
 const utils = require('./utils');
 
 
 exports.handle = function (name, cwd) {
-    if (name) {
-        if (name.match(/[A-Z\W]/) == null) {
-            console.clear();
-            utils.print(`Creating a new Glaciary.JS project in ${chalk.green(cwd + `\\${name}`)}\n\n`);
-            createApp(cwd, name);
-        } else {
-            utils.print(`Upper cases and special characters are not supported`);
-        }
+    let validation = validate(name);
+    console.log(validation)
+    if (validation.validForNewPackages && validation.validForOldPackages) {
+        console.clear();
+        utils.print(`Creating a new Glaciary.JS project in ${chalk.green(cwd + `\\${name}`)}\n\n`);
+        createApp(cwd, name);
     } else {
-        utils.print(`You have to enter a name for your app. \nUse ${chalk.green("create-glaciary-app name")}, where name is the name of your app.`);
+        if (validation.warnings) {
+            Object.keys(validation.warnings).forEach((warn => {
+                utils.print(chalk.yellow(validation.warnings[warn]));
+            }))
+        }
+        if (validation.errors) {
+            Object.keys(validation.errors).forEach((err => {
+                utils.print(chalk.red(validation.errors[err]));
+            }))
+        }
+
     }
 }
-
 
 
 function createApp(cwd, name) {
@@ -27,11 +35,12 @@ function createApp(cwd, name) {
         utils.print('Successfully created the app folder');
 
         if (copyFiles(dir)) {
-            utils.print(`App project files successfully placed in ${chalk.green(dir)}`);
+            utils.print(`\n\nApp project files successfully placed in ${chalk.green(dir)}\n\n`);
         }
 
     }
 }
+
 
 function createAppDir(dir) {
     if (!fs.existsSync(dir)) {
@@ -41,6 +50,7 @@ function createAppDir(dir) {
 
 }
 
+
 function copyFiles(dir) {
     fs.copy(__dirname + '/template', dir, err => {
         if (err) {
@@ -48,4 +58,8 @@ function copyFiles(dir) {
         }
     });
     return true;
+}
+
+function installPKG(dir){
+    
 }
