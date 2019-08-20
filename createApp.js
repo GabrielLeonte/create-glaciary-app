@@ -1,8 +1,9 @@
 const fs = require('fs-extra');
+const chalk = require('chalk');
 const utils = require('./utils');
 
 
-exports.handle = function (name, cwd, chalk) {
+exports.handle = function (name, cwd) {
     if (name) {
         if (name.match(/[A-Z\W]/) == null) {
             console.clear();
@@ -17,17 +18,16 @@ exports.handle = function (name, cwd, chalk) {
 }
 
 
+
 function createApp(cwd, name) {
     let dir = cwd + `\\${name}`;
-
     utils.print(`Creating app folder...`);
-
     if (createAppDir(dir)) {
 
         utils.print('Successfully created the app folder');
 
         if (copyFiles(dir)) {
-            utils.print(`App project files successfully placed in ${dir}`);
+            utils.print(`App project files successfully placed in ${chalk.green(dir)}`);
         }
 
     }
@@ -44,11 +44,8 @@ function createAppDir(dir) {
 function copyFiles(dir) {
     fs.copy(__dirname + '/template', dir, err => {
         if (err) {
-            return console.error(err);
-        }
-        else {
-            return true;
+            return utils.print(err);
         }
     });
+    return true;
 }
-
