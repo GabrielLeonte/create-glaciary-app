@@ -1,12 +1,13 @@
 const fs = require('fs-extra');
 const chalk = require('chalk');
 const validate = require('validate-npm-package-name');
+const envinfo = require('envinfo');
 const utils = require('./utils');
+const { exec } = require('child_process');
 
 
 exports.handle = function (name, cwd) {
     let validation = validate(name);
-    console.log(validation)
     if (validation.validForNewPackages && validation.validForOldPackages) {
         console.clear();
         utils.print(`Creating a new Glaciary.JS project in ${chalk.green(cwd + `\\${name}`)}\n\n`);
@@ -36,6 +37,7 @@ function createApp(cwd, name) {
 
         if (copyFiles(dir)) {
             utils.print(`\n\nApp project files successfully placed in ${chalk.green(dir)}\n\n`);
+            getPkgManager(dir);
         }
 
     }
@@ -60,6 +62,29 @@ function copyFiles(dir) {
     return true;
 }
 
-function installPKG(dir){
-    
+
+async function getPkgManager(dir) {
+    const isyarn = await envinfo.helpers.getYarnInfo();
+    const res = isyarn.find(element => element === "Not Found");
+    if (res == "Not Found") {
+        installPKG("npm", dir);
+    } else {
+        installPKG("yarn", dir);
+    }
+}
+
+
+function installPKG(pkg, dir) {
+    if (pkg === "npm") {
+        exec(`cd `,(error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${error}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+        });
+    } else if (pkg === "yarn") {
+        console.log('yarn');
+    }
 }
