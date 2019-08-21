@@ -6,8 +6,8 @@ const { exec } = require('child_process');
 const validate = require('./validate');
 
 
-exports.handle = function (cwd, name) {
-    if (validate.app(name, cwd)) {
+exports.handle = function (name, cwd) {
+    if (validate.app(cwd, name)) {
         createApp(cwd, name);
     }
 }
