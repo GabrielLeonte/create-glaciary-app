@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: update-npm
-          command: 'sudo npm install -g npm@5'
+          command: 'sudo npm install -g npm'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -18,6 +18,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run:
+           name: npm-link
+           command: npm-link
       - run:
           name: test
           command: create-glaciary-app testapp
