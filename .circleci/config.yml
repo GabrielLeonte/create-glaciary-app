@@ -19,8 +19,5 @@ jobs:
           paths:
             - ./node_modules
       - run:
-           name: npm-link
-           command: npm link
-      - run:
           name: test
-          command: create-glaciary-app testapp
+          command: node cli.js testapp
