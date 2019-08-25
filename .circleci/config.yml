@@ -20,4 +20,4 @@ jobs:
             - ./node_modules
       - run:
           name: test
-          command: create-glaciary-app test
+          command: create-glaciary-app testapp
