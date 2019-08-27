@@ -3,6 +3,6 @@ module.exports.http = function (req, res) {
 }
 
 module.exports.socket = function (socket) {
-    socket.emit('data', 'Hello'); // This is an event which say hello to every new connected client.
+    socket.emit('Hello'); // This is an event which say hello to every new connected client.
 }
 
