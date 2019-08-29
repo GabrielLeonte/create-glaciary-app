@@ -3,7 +3,9 @@ A simple way to create a Glaciary.JS app in seconds.
 
 # How to create a new project
 To create a Glaciary.JS API, open a terminal and run:
-```npm init glaciary-app app ```
+
+``` $ npm init glaciary-app app ```
+
 
 where `app` is the name of you API
 
