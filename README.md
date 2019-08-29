@@ -26,21 +26,6 @@ Or with [yarn](https://yarnpkg.com/en/):
 yarn create glaciary-app <my-project>
 ```
 
-## Features :+1:
-1. Automatic package manager detector:
-      - yarn
-      - npm
-
-## Incomming features :smirk:
-
-1. The possibility to chose if you want or not to use:
-      - Socket.IO Server
-      - Http(s) Server
-2. Chose the perfect template for you:
-      - Basic
-      - Crypto Wallet API
-      - Open to ideas...
-
 <br/>
 
 > If you want to contribute with any idea, i am open to hear in the pull requests section.
