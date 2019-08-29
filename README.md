@@ -1,6 +1,7 @@
 # create-glaciary-app 
 A simple way to create a Glaciary.JS app in seconds.
 
+[Glaciary.JS Lib](https://github.com/GabrielLeonte/Glaciary.JS)
 # How to create a new project
 To create a Glaciary.JS API, open a terminal and run:
 
@@ -8,6 +9,9 @@ To create a Glaciary.JS API, open a terminal and run:
 
 
 where `app` is the name of you API
+
+
+
 
 # Testing Platforms
 
