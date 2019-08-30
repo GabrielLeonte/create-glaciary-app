@@ -11,7 +11,7 @@ cli.help();
 
 
 // Display version number when `-v` or `--version` appears.
-cli.version('1.0.0');
+cli.version("1.0.0");
 
 
 // Run createApp function

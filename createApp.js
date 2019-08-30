@@ -5,8 +5,6 @@ const utils = require("./utils");
 const { exec } = require("child_process");
 const validate = require("./validate");
 
-
-
 function createAppDir(dir) {
     try {
         fs.mkdirSync(dir);
@@ -16,16 +14,14 @@ function createAppDir(dir) {
     }
 }
 
-
 function copyFiles(dir) {
     try {
-        fs.copySync(__dirname + '/template', dir);
+        fs.copySync(__dirname + "/template", dir);
         return true;
     } catch (err) {
-        utils.print(err)
+        utils.print(err);
     }
 }
-
 
 function installPKG(pkg, name) {
     exec(`cd ${name} && ${pkg} install`, (err, stdout) => {
@@ -40,7 +36,7 @@ function installPKG(pkg, name) {
 async function getPkgManager(name) {
 
     const YarnInfo = await envinfo.helpers.getYarnInfo();
-    const res = YarnInfo.find(element => element === "Not Found");
+    const res = YarnInfo.find((element) => element === "Not Found");
 
     if (res === "Not Found") {
         installPKG("npm", name);
