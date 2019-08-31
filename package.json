@@ -1,15 +1,12 @@
 {
   "name": "create-glaciary-app",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A simple way to create a Glaciary.JS app in seconds.",
   "bin": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "cli",
-    "Glaciary.JS"
-  ],
+  "keywords": [],
   "author": "Gabriel Leonte",
   "license": "MIT",
   "dependencies": {
