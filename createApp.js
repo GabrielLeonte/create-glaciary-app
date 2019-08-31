@@ -28,7 +28,13 @@ function installPKG(pkg, name) {
         if (err) {
             return utils.print(err);
         } else {
-            return utils.print(stdout);
+            utils.print(stdout);
+            utils.print("\n" +
+                "Thank you for chosing Glaciary.JS to create your new API\n\n" +
+                "To start the api make sure you have glaciary installed as global " +
+                "(use npm install glaciary -g)\n" + `run ${chalk.green('cd ' + name)} ` + `then ${chalk.green('npm start')}\n` +
+                "\n\nEnjoy building your new API :D"
+            )
         }
     });
 }
